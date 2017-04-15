@@ -1,0 +1,39 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title></title>
+    <script src="https://unpkg.com/react@latest/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@latest/dist/react-dom.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+   </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+
+    class Input extends React.Component{
+      constructor(props){
+        super(props);
+        this.state={
+          text:"hello",
+        }
+      }
+        handleChange=(event)=>{
+          this.setState({
+            text:event.target.value
+          });
+        }
+
+      render(){
+        return (
+          <div>
+          <input value={this.state.text} onChange={this.handleChange}/>
+          <p>{this.state.text}</p>
+          </div>
+        )
+      }
+    }
+
+
+    ReactDOM.render(<Input />,document.getElementById('root'))
