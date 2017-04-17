@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title></title>
+    <script src="https://unpkg.com/react@latest/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@latest/dist/react-dom.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.6/marked.js"></script>
+    <link rel="Stylesheet" type="text/css" href=".\Stylesheet.css">
+   </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+
+    class App extends React.Component{
+      constructor(props){
+        super(props);
+        this.state ={
+          text:'',
+        }
+      }
+      handleChange=(event)=>{
+        this.setState({
+          text:event.target.value
+        })
+      }
+
+      handleCoversion=(value)=>{
+        let text = marked(value ,{sanitize: true});
+        return {__html: text};
+      }
+
+      render(){
+        return(
+          <div className='AppComp'>
+          <div className='Heading'>
+          <h1>The Exeter Document Previewer</h1>
+          </div>
+          <Input text={this.state.text} handleChange={this.handleChange}/>
+          <Output text={this.state.text} handleCoversion={this.handleCoversion} />
+          </div>
+        );
+      }
+    };
+
+    class Input extends React.Component{
+      render(){
+        return(
+          <div className='Comp' id="input">
+          <h3>Enter your Text here</h3>
+          <textarea type='text' value={this.props.text} onChange={this.props.handleChange}/>
+          </div>
+        );
+      }
+    };
+
+    class Output extends React.Component{
+      render(){
+        return(
+          <div className='Comp' id='Output'>
+          <h3 className='compHeading'>This is your Marked text</h3>
+          <p dangerouslySetInnerHTML={this.props.handleCoversion(this.props.text)}/>
+          </div>
+        );
+      }
+    };
+
+    ReactDOM.render(<App />,document.getElementById('root'))
