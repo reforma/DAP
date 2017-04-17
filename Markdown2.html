@@ -17,7 +17,7 @@
       constructor(props){
         super(props);
         this.state ={
-          text:'',
+          text:'The Exeter  \nLakeside House  \nExeter Business Park  \nEmperor Way  \nExeter  \nDevon  \nEX1 3FD ',
         }
       }
       handleChange=(event)=>{
@@ -35,7 +35,7 @@
         return(
           <div className='AppComp'>
           <div className='Heading'>
-          <h1>The Exeter Document Previewer</h1>
+          <h1>The Exeter Document Pre-viewer</h1>
           </div>
           <Input text={this.state.text} handleChange={this.handleChange}/>
           <Output text={this.state.text} handleCoversion={this.handleCoversion} />
